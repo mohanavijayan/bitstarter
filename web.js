@@ -2,7 +2,7 @@ var express = require('express');
 
 var app = express.createServer(express.logger());
 var fs=require('fs');
-var buf =new Buffer(256);
+var buf =new Buffer(10240);
 app.get('/', function(request, response)
  {
   //response.send('Hello World2!');
@@ -30,3 +30,7 @@ app.listen(port, function() {
 });*/
 
 
+//buf.write(fs.readFileSync('index.html','utf8'),'utf-8');
+//console.log(buf.toString('utf8',0));
+var len=buf.write(fs.readFileSync('index.html','utf8'),'utf-8');
+console.log(buf.toString('utf8',0,len));
